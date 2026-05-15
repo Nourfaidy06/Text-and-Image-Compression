@@ -111,13 +111,6 @@ void MainWindow::updateStatus(const QString &message, bool isError)
     ui->lblStats->setStyleSheet(isError ? "color: red;" : "color: green;");
 
 }
-#include <QFileDialog>
-#include <QMessageBox>
-#include <QImage>
-
-#include <QFileDialog>
-#include <QMessageBox>
-#include <QImage>
 
 void MainWindow::on_btnPngCompress_clicked()
 {

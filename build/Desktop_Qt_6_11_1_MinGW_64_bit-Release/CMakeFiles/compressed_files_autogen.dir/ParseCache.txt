@@ -387,6 +387,6 @@ C:/Users/nourf/OneDrive/Documents/Huffman-Archiver-Qt/mainwindow.h
  mdp:C:/Users/nourf/OneDrive/Documents/Huffman-Archiver-Qt/huffman.h
  mdp:C:/Users/nourf/OneDrive/Documents/Huffman-Archiver-Qt/mainwindow.h
 C:/Users/nourf/OneDrive/Documents/Huffman-Archiver-Qt/huffman.cpp
-C:/Users/nourf/OneDrive/Documents/Huffman-Archiver-Qt/main.cpp
 C:/Users/nourf/OneDrive/Documents/Huffman-Archiver-Qt/mainwindow.cpp
  uic:ui_mainwindow.h
+C:/Users/nourf/OneDrive/Documents/Huffman-Archiver-Qt/main.cpp
