@@ -3,8 +3,10 @@
 #include <queue>
 
 // Recursive function to traverse the tree and assign 0s and 1s
-void Huffman::generateCodes(std::shared_ptr<Node> node, std::string code) {
-    if (!node) return;
+void Huffman::generateCodes(std::shared_ptr<Node> node, std::string code)
+{
+    if (!node)
+        return;
 
     // If it's a leaf node, save the character and its code
     if (!node->left && !node->right) {
@@ -15,19 +17,23 @@ void Huffman::generateCodes(std::shared_ptr<Node> node, std::string code) {
     generateCodes(node->right, code + "1");
 }
 
-bool Huffman::compress(const std::string& inputPath, const std::string& outputPath) {
+bool Huffman::compress(const std::string &inputPath, const std::string &outputPath)
+{
     // Read File in binary mode
     std::ifstream inFile(inputPath, std::ios::binary);
-    if (!inFile) return false;
+    if (!inFile)
+        return false;
 
     std::string text((std::istreambuf_iterator<char>(inFile)), std::istreambuf_iterator<char>());
     inFile.close();
 
-    if (text.empty()) return false;
+    if (text.empty())
+        return false;
 
     // 1. Frequency Map: Count how many times each character appears
     std::unordered_map<char, int> freq;
-    for (char c : text) freq[c]++;
+    for (char c : text)
+        freq[c]++;
 
     // 2. Build Tree using a Priority Queue (Min-Heap)
     std::priority_queue<std::shared_ptr<Node>, std::vector<std::shared_ptr<Node>>, Compare> pq;
@@ -36,8 +42,10 @@ bool Huffman::compress(const std::string& inputPath, const std::string& outputPa
     }
 
     while (pq.size() > 1) {
-        auto l = pq.top(); pq.pop();
-        auto r = pq.top(); pq.pop();
+        auto l = pq.top();
+        pq.pop();
+        auto r = pq.top();
+        pq.pop();
 
         // Create internal node with the sum of frequencies
         auto parent = std::make_shared<Node>('\0', l->freq + r->freq);
@@ -58,23 +66,57 @@ bool Huffman::compress(const std::string& inputPath, const std::string& outputPa
     }
 
     std::ofstream outFile(outputPath);
-    if (!outFile) return false;
+    if (!outFile)
+        return false;
     outFile << encoded;
     outFile.close();
 
     // 5. Calculate statistics for the GUI display
-    lastStats.originalSize = (long long)text.length() * 8; // bits
-    lastStats.compressedSize = (long long)encoded.length(); // bits
+    lastStats.originalSize = (long long) text.length() * 8;  // bits
+    lastStats.compressedSize = (long long) encoded.length(); // bits
     if (lastStats.originalSize > 0) {
-        lastStats.ratio = (1.0 - (double)lastStats.compressedSize / lastStats.originalSize) * 100.0;
+        lastStats.ratio = (1.0 - (double) lastStats.compressedSize / lastStats.originalSize)
+                          * 100.0;
     }
 
     return true;
 }
 
 // Added this to prevent "undefined reference" errors if your header mentions it
+
 bool Huffman::decompress(const std::string& inputPath, const std::string& outputPath, std::shared_ptr<Node> savedRoot) {
-    // Placeholder for now so the project builds
-    (void)inputPath; (void)outputPath; (void)savedRoot;
-    return false;
+    // Read encoded file
+    std::ifstream inFile(inputPath);
+    if (!inFile) return false;
+
+    std::string encoded((std::istreambuf_iterator<char>(inFile)), std::istreambuf_iterator<char>());
+    inFile.close();
+
+    if (encoded.empty()) return false;
+
+    // Use saved Huffman tree root
+    std::shared_ptr<Node> curr = savedRoot;
+    std::string decoded = "";
+
+    for (char bit : encoded) {
+        curr = (bit == '0') ? curr->left : curr->right;
+
+        // Leaf node reached
+        if (!curr->left && !curr->right) {
+            decoded += curr->ch;
+            curr = savedRoot;
+        }
+    }
+
+    // Write decoded text to file
+    std::ofstream outFile(outputPath);
+    if (!outFile) return false;
+    outFile << decoded;
+    outFile.close();
+
+    return true;
+}
+std::shared_ptr<Node> Huffman::getRoot()
+{
+    return root;
 }

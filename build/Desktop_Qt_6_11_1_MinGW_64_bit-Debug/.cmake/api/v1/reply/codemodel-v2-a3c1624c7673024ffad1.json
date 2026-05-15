@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-f9547697e138610140c3.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "compressed_files",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "compressed_files::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-compressed_files-Debug-b35c3a303af2ed266962.json",
+					"name" : "compressed_files",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "compressed_files_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-compressed_files_autogen-Debug-763c543fc89af1554c64.json",
+					"name" : "compressed_files_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "compressed_files_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-compressed_files_autogen_timestamp_deps-Debug-3f458fad9d4c77daaa1d.json",
+					"name" : "compressed_files_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/nourf/OneDrive/Documents/Huffman-Archiver-Qt/build/Desktop_Qt_6_11_1_MinGW_64_bit-Debug",
+		"source" : "C:/Users/nourf/OneDrive/Documents/Huffman-Archiver-Qt"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}
